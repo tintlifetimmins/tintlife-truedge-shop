@@ -1,5 +1,5 @@
 <!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<title>Squeegee sharpener | Tintlife TruEdge</title><style>*{box-sizing:border-box}body{margin:0;background:#111;color:#ddd;font:16px/1.6 Roboto,Arial,sans-serif}
+<title>Squeegee &amp; hard card sharpener | Tintlife TruEdge</title><style>*{box-sizing:border-box}body{margin:0;background:#111;color:#ddd;font:16px/1.6 Roboto,Arial,sans-serif}
 a{color:#d77be0}.pv{background:#ffcc33;color:#000;text-align:center;font:700 13px Arial;padding:6px}
 header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#000;border-bottom:2px solid #c94fd6}
 .logo{color:#fff;font-weight:900;font-size:20px;text-decoration:none;letter-spacing:.02em}.logo span{color:#c94fd6}
@@ -80,7 +80,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 @media(max-width:820px){.tlp-main{min-height:0}.tlp-tiers button{padding:12px}.tlp{padding:20px 14px}.tlp-grid{grid-template-columns:1fr;gap:18px}.tlp h2{font-size:27px}.tlp-info{padding:20px}.tlp-sw{gap:14px}.tlp-sw button{width:42px;height:42px}}
 </style>
 <div class="tlp-grid">
- <div class="tlp-main"><img id="tlp-img" src="renders_v1.22/truedge_pla_basic_black_v1.22.webp" alt="Tintlife TruEdge squeegee sharpener in Black" width="1600" height="1200"><div class="tlp-ov" id="tlp-ov"><svg width="1000" height="135" viewBox="0 0 1000 135" aria-hidden="true"><defs><filter id="tlpEng" x="-5%" y="-40%" width="110%" height="180%" color-interpolation-filters="sRGB">
+ <div class="tlp-main"><img id="tlp-img" src="renders_v1.22/truedge_pla_basic_black_v1.22.webp" alt="Tintlife TruEdge squeegee and hard card sharpener in Black" width="1600" height="1200"><div class="tlp-ov" id="tlp-ov"><svg width="1000" height="135" viewBox="0 0 1000 135" aria-hidden="true"><defs><filter id="tlpEng" x="-5%" y="-40%" width="110%" height="180%" color-interpolation-filters="sRGB">
 <feComponentTransfer in="SourceAlpha" result="inv"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer>
 <feOffset in="inv" dx="1.5" dy="4" result="io"/><feGaussianBlur in="io" stdDeviation="1.2" result="ib"/>
 <feFlood id="tlpShC" flood-color="#000" flood-opacity=".5"/><feComposite in2="ib" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="wall"/>
@@ -90,9 +90,9 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 <feFlood id="tlpRimC" flood-color="#fff" flood-opacity="0"/><feComposite in2="orb" operator="in" result="rim"/>
 <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="wall"/><feMergeNode in="lip"/><feMergeNode in="rim"/></feMerge></filter></defs><text id="tlp-ovt" x="500" y="96.7" text-anchor="middle" font-size="80"></text></svg></div><span class="tlp-badge" id="tlp-badge">Black</span></div>
  <div class="tlp-info">
-  <p class="tlp-kicker">Squeegee &amp; tint-rubber sharpener</p>
+  <p class="tlp-kicker">Squeegee &amp; hard card sharpener</p>
   <h1 class="tlp-h">Tintlife TruEdge</h1>
-  <p class="hdesc">A two-channel sharpener that puts a clean, straight edge back on your squeegee and tint rubber. Designed by a tinter with 11 years of experience.</p>
+  <p class="hdesc">A two-channel sharpener that puts a clean, straight edge back on your squeegees and hard cards. Designed by a window tinter with 11 years of experience.</p>
   <div class="tlp-price" id="tlp-price">$39.99 <small>CAD</small></div><p class="ptax">plus tax and shipping</p>
   <div class="tlp-sel">Colour: <b id="tlp-name">Black</b></div>
   <div class="tlp-row-label" id="lbl-std">Standard PLA</div>
@@ -126,7 +126,7 @@ var C=[["Black","#000000","pla_basic_black"],["Jade White","#FFFFFF","pla_basic_
 ["Black Carbon Fibre (PETG-CF)","#34383B","petg_cf",1],["Black Carbon Fibre (Nylon)","#1F2125","pa_cf",1]];
 var T=0,cur=0;var r=document.getElementById('tlp'),img=r.querySelector('#tlp-img'),nm=r.querySelector('#tlp-name'),bd=r.querySelector('#tlp-badge'),pr=r.querySelector('#tlp-price'),btns=[];
 C.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','radio');b.setAttribute('aria-label',c[0]);b.style.backgroundColor=c[1];if(c[3])b.className='cf';if(c[4])b.className='cc';b.innerHTML='<span class="tip">'+c[0]+'</span>';b.onclick=function(){sel(i,1)};b.onkeydown=function(e){var k=e.key,d=(k=='ArrowRight'||k=='ArrowDown')?1:(k=='ArrowLeft'||k=='ArrowUp')?-1:0;if(d){e.preventDefault();sel((i+d+C.length)%C.length,1,1)}};r.querySelector(c[3]?'#row-cf':'#row-std').appendChild(b);btns.push(b);if(!c[4])new Image().src=IMG+'truedge_'+c[2]+V+'.webp'});var LS=0;function SL(){return C[cur][4]?C[LS][2]:C[cur][2]}
-function sel(i,anim,focus){cur=i;var c=C[i];if(!c[3]&&!c[4])LS=i;r.querySelector('#tlp-cc').classList.toggle('on',!!c[4]);btns.forEach(function(b,j){b.setAttribute('aria-checked',j==i);b.tabIndex=j==i?0:-1});if(focus)btns[i].focus();nm.textContent=bd.textContent=c[0];var base=+tb[T].dataset.p+(c[3]?5:0),tot=base+(c[4]?10:0)+(E()?5:0);pr.innerHTML='$'+tot.toFixed(2)+' <small>CAD · '+tb[T].dataset.n+(c[3]?' CF':'')+(c[4]?' + custom colour':'')+(E()?' + engraving':'')+'</small>';window.TOT=tot;if(window.taxu)taxu();var src=IMG+(E()?'blank_':'truedge_')+SL()+V+'.webp';if(anim){img.classList.add('fade');setTimeout(function(){img.src=src;ov();img.alt='Tintlife TruEdge squeegee sharpener in '+(c[4]?'a custom colour':c[0]);img.classList.remove('fade')},150)}else{img.src=src;ov()}}
+function sel(i,anim,focus){cur=i;var c=C[i];if(!c[3]&&!c[4])LS=i;r.querySelector('#tlp-cc').classList.toggle('on',!!c[4]);btns.forEach(function(b,j){b.setAttribute('aria-checked',j==i);b.tabIndex=j==i?0:-1});if(focus)btns[i].focus();nm.textContent=bd.textContent=c[0];var base=+tb[T].dataset.p+(c[3]?5:0),tot=base+(c[4]?10:0)+(E()?5:0);pr.innerHTML='$'+tot.toFixed(2)+' <small>CAD · '+tb[T].dataset.n+(c[3]?' CF':'')+(c[4]?' + custom colour':'')+(E()?' + engraving':'')+'</small>';window.TOT=tot;if(window.taxu)taxu();var src=IMG+(E()?'blank_':'truedge_')+SL()+V+'.webp';if(anim){img.classList.add('fade');setTimeout(function(){img.src=src;ov();img.alt='Tintlife TruEdge squeegee and hard card sharpener in '+(c[4]?'a custom colour':c[0]);img.classList.remove('fade')},150)}else{img.src=src;ov()}}
 var ek=r.querySelector('#tlp-echk'),et=r.querySelector('#tlp-etxt'),ew=r.querySelector('#tlp-eng'),oe=r.querySelector('#tlp-ov'),ot=r.querySelector('#tlp-ovt'),mw=r.querySelector('.tlp-main');
 function E(){return ek.checked}
 // usable text rect (100 x 13.5 mm, centred, 8 mm end margins) on the blank side wall, projected by Blender world_to_camera_view (render_blank.py -> corners.json): TL,TR,BR,BL
