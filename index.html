@@ -14,7 +14,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px
 footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;text-align:center;background:#000}
 .tlp{background:#111!important}.tlp-h{font-weight:900;font-size:32px;margin:0 0 4px;color:#fff;line-height:1.1}
 .ptax{margin:0;color:#bbb;font-size:14px}.tlp-btn{display:block;text-align:center;text-decoration:none}.tlp-btn[aria-disabled=true]{opacity:.6;cursor:wait}
-.tax{margin-top:18px;font-size:13px;color:#aaa}.tax label{display:block;margin-bottom:6px;color:#bbb}#tlp-codemsg{margin-top:6px;color:#ffb3b3}#tlp-codemsg:empty{display:none}.tax select,.tax input{width:100%;box-sizing:border-box;background:#000;color:#fff;border:2px solid #444;border-radius:8px;padding:10px;font-size:15px}#taxline{margin-top:6px}
+.tax{margin-top:18px;font-size:13px;color:#aaa}.tax label{display:block;margin-bottom:6px;color:#bbb}.codebox{display:flex;gap:8px}.codebox input{flex:1;min-width:0}#tlp-apply{background:transparent;color:#fff;border:2px solid #cc44cc;border-radius:8px;padding:0 18px;font:700 15px Roboto,Arial,sans-serif;cursor:pointer}#tlp-codemsg{margin-top:6px;color:#ffb3b3}#tlp-codemsg.ok{color:#9be59b}#tlp-codemsg:empty{display:none}.tax select,.tax input{width:100%;box-sizing:border-box;background:#000;color:#fff;border:2px solid #444;border-radius:8px;padding:10px;font-size:15px}#taxline{margin-top:6px}
 .pcards{display:grid;gap:12px;grid-template-columns:1fr 1fr}@media(max-width:520px){.pcards{grid-template-columns:1fr}}
 .pcard{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:18px}.pcard.prem{border-color:#c94fd6;box-shadow:0 0 14px rgba(204,68,204,.25)}
 .pcard h3{margin:0;color:#fff;font-size:15px;letter-spacing:.12em;text-transform:uppercase}.pcard.prem h3{color:#d77be0}
@@ -114,7 +114,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
    </div>
   </div>
   <div class="tax"><label for="prov">Ship to (tax estimate)</label><select id="prov"><option value="ON">Ontario (HST 13%)</option><option value="NB">New Brunswick (HST 15%)</option><option value="NL">Newfoundland &amp; Labrador (HST 15%)</option><option value="PE">Prince Edward Island (HST 15%)</option><option value="NS">Nova Scotia (HST 14%)</option><option value="QC">Quebec (GST 5%)</option><option value="MB">Manitoba (GST 5%)</option><option value="SK">Saskatchewan (GST 5%)</option><option value="AB">Alberta (GST 5%)</option><option value="BC">British Columbia (GST 5%)</option><option value="YT">Yukon (GST 5%)</option><option value="NT">Northwest Territories (GST 5%)</option><option value="NU">Nunavut (GST 5%)</option></select><div id="taxline"></div></div>
-  <div class="tax"><label for="tlp-code">Have a code?</label><input type="text" id="tlp-code" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="tlp-codemsg"><div id="tlp-codemsg" role="status" aria-live="polite"></div></div>
+  <div class="tax"><label for="tlp-code">Have a code?</label><div class="codebox"><input type="text" id="tlp-code" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="tlp-codemsg"><button type="button" id="tlp-apply">Apply</button></div><div id="tlp-codemsg" role="status" aria-live="polite"></div></div>
   <a class="tlp-btn" href="#" id="buy">Checkout securely with Square</a>
   <p class="tlp-note">Every Tintlife TruEdge is serial numbered (TE-0001, TE-0002 …). Made in Timmins, Ontario.</p>
   <p class="tlp-note">Printed in Canada. Carbon fibre versions are stiffer and have a matte textured finish.</p>
@@ -158,8 +158,18 @@ var h=location.hash.slice(1).split(',');cur=Math.max(0,C.findIndex(function(c){r
 })();
 
 var RT={ON:.13,NB:.15,NL:.15,PE:.15,NS:.14,QC:.05,MB:.05,SK:.05,AB:.05,BC:.05,YT:.05,NT:.05,NU:.05},SHIP=13.99,CHECKOUT_URL='https://tintlife-truedge-checkout.tintlifetimmins.workers.dev/checkout',pv=document.getElementById('prov');
-window.taxu=function(){var r=RT[pv.value],sub=window.TOT+SHIP,t=sub*r;document.getElementById('taxline').textContent='Shipping $13.99 (flat, anywhere in Canada) · tax '+Math.round(r*100)+'% $'+t.toFixed(2)+' · total $'+(sub+t).toFixed(2)+' CAD. Ship-to province must match your shipping address.'};pv.onchange=taxu;taxu();
-document.getElementById('buy').onclick=function(e){e.preventDefault();var b=this,o=window.TE(),cm=document.getElementById('tlp-codemsg');o.province=pv.value;o.code=document.getElementById('tlp-code').value.trim().toUpperCase();cm.textContent='';
+var API='https://tintlife-truedge-checkout.tintlifetimmins.workers.dev',CODE=null,ci=document.getElementById('tlp-code'),cm=document.getElementById('tlp-codemsg'),ab=document.getElementById('tlp-apply');
+// Same maths as the Worker/Square: cents, discount on the base Tintlife TruEdge line only, tax rounded per line.
+window.taxu=function(){var r=RT[pv.value],o=window.TE?window.TE():null;if(!o)return;var tbn=document.querySelector('#row-tier button[aria-checked="true"]')||document.querySelector('button[data-n]');
+ var base=Math.round(+tbn.dataset.p*100)+(o.cf?500:0),d=CODE?Math.round(base*CODE.pct/100):0,lines=[base-d];if(o.custom)lines.push(1000);if(o.engraving)lines.push(500);lines.push(1399);
+ var sub=0,tax=0;lines.forEach(function(c){sub+=c;tax+=Math.round(c*r)});var f=function(c){return '$'+(c/100).toFixed(2)};
+ document.getElementById('taxline').textContent=(d?'Code '+CODE.code+' (-'+CODE.pct+'% on the Tintlife TruEdge): -'+f(d)+' · ':'')+'Shipping $13.99 (flat, anywhere in Canada) · tax '+Math.round(r*100)+'% '+f(tax)+' · total '+f(sub+tax)+' CAD. Ship-to province must match your shipping address.'};
+function applyCode(then){var c=ci.value.trim().toUpperCase();cm.className='';cm.textContent='';if(!c){CODE=null;taxu();if(then)then();return}ab.disabled=true;
+ fetch(API+'/validate-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:c})}).then(function(r){return r.json()}).then(function(j){ab.disabled=false;if(j.valid){CODE={code:c,pct:j.percent};cm.className='ok';cm.textContent='Code applied: '+j.percent+'% off the Tintlife TruEdge.';taxu();if(then)then()}else{CODE=null;cm.textContent=j.error||'Sorry, that code isn\'t valid.';taxu()}}).catch(function(){ab.disabled=false;cm.textContent='Could not check the code. Please try again.'})}
+ab.onclick=function(){applyCode()};ci.onkeydown=function(e){if(e.key=='Enter'){e.preventDefault();applyCode()}};ci.oninput=function(){if(CODE&&ci.value.trim().toUpperCase()!=CODE.code){CODE=null;cm.textContent='';taxu()}};
+document.getElementById('tlp-etxt').addEventListener('input',function(){taxu()});
+pv.onchange=taxu;taxu();
+document.getElementById('buy').onclick=function(e){e.preventDefault();var b=this,o=window.TE();o.province=pv.value;var typed=ci.value.trim().toUpperCase();if(typed&&(!CODE||CODE.code!=typed)){applyCode();return}o.code=CODE?CODE.code:'';
  if(o.custom&&!o.customColour){alert('Please describe your custom colour.');return}
  b.setAttribute('aria-disabled','true');b.textContent='Opening secure checkout…';
  var reset=function(){b.removeAttribute('aria-disabled');b.textContent='Checkout securely with Square'};
