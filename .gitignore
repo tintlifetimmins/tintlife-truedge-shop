@@ -8,3 +8,6 @@ ca.html
 p.json
 codes.json
 ca.json
+checkout_draft/
+worker_draft/
+.wrangler/

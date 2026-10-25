@@ -13,7 +13,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px
 .gal{display:flex;gap:10px;overflow-x:auto;padding:0 16px 10px}.gal img{height:150px;border-radius:10px;border:1px solid #2a2a2a}
 footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;text-align:center;background:#000}
 .tlp{background:#111!important}.tlp-h{font-weight:900;font-size:32px;margin:0 0 4px;color:#fff;line-height:1.1}
-.ptax{margin:0;color:#bbb;font-size:14px}.tlp-btn{display:block;text-align:center;text-decoration:none;background:#555!important;box-shadow:none!important;cursor:not-allowed!important}
+.ptax{margin:0;color:#bbb;font-size:14px}.tlp-btn{display:block;text-align:center;text-decoration:none}.tlp-btn[aria-disabled=true]{opacity:.6;cursor:wait}
 .tax{margin-top:18px;font-size:13px;color:#aaa}.tax label{display:block;margin-bottom:6px;color:#bbb}.tax select{width:100%;background:#000;color:#fff;border:2px solid #444;border-radius:8px;padding:10px;font-size:15px}#taxline{margin-top:6px}
 .pcards{display:grid;gap:12px;grid-template-columns:1fr 1fr}@media(max-width:520px){.pcards{grid-template-columns:1fr}}
 .pcard{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:18px}.pcard.prem{border-color:#c94fd6;box-shadow:0 0 14px rgba(204,68,204,.25)}
@@ -23,7 +23,6 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 .addons{list-style:none;padding:0;margin:16px 0 0;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px}.addons li{display:flex;justify-content:space-between;padding:10px 16px;font-size:15px}.addons li+li{border-top:1px solid #2a2a2a}.addons b{color:#fff}
 .pfine{font-size:14px;color:#bbb;margin:14px 0 6px}details.ptax2{font-size:14px;color:#bbb;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:8px 14px}details.ptax2 summary{cursor:pointer;color:#fff}details.ptax2 ul{margin:8px 0 4px;padding-left:18px}
 .chimg{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #2a2a2a;margin:0 0 12px}.cards2{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:700px){.cards2{grid-template-columns:1fr 1fr}}.tagl{display:inline-block;margin:4px 0 10px;padding:3px 10px;border:1px solid #c94fd6;border-radius:20px;color:#d77be0;font-size:13px;font-weight:500;letter-spacing:.02em}.hdesc{color:#ccc;font-size:15px;line-height:1.5;margin:8px 0 12px}.secp{color:#bbb;font-size:15px;margin:12px 0 0}.logo{display:flex;align-items:center;gap:10px}.hlogo{height:64px;width:auto;display:block}.logo .lt{color:#fff;font-size:16px;font-weight:700}.flogo{width:180px;height:auto;margin:0 auto 10px;display:block}@media(min-width:700px){.hlogo{height:80px}}</style></head><body>
-<div class="pv">PREVIEW, NOT LIVE. No orders or payments are taken.</div>
 <header><a class="logo" href="index.html"><img class="hlogo" src="img/tintlife-logo.webp" srcset="img/tintlife-logo.webp 1x, img/tintlife-logo@2x.webp 2x" alt="#TINTLIFE" width="400" height="205"><span class="lt">Tintlife TruEdge</span></a><nav><a href="index.html" class=on>Shop</a><a href="returns.html">Returns &amp; shipping</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></nav></header>
 <main><div class="tlp" id="tlp"><style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
@@ -114,9 +113,9 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
     <div class="hint" id="tlp-ehint"><span>Engraving is recessed into the part, same colour as the body (single-colour print). Preview is approximate.</span><span id="tlp-ecnt">0/16</span></div>
    </div>
   </div>
-  <div class="tax"><label for="prov">Ship to (tax estimate)</label><select id="prov"><option value="ON">Ontario (HST 13%)</option><option value="NB">New Brunswick (HST 15%)</option><option value="NL">Newfoundland &amp; Labrador (HST 15%)</option><option value="PE">Prince Edward Island (HST 15%)</option><option value="NS">Nova Scotia (HST 14%)</option><option value="X">Other province / territory (GST 5%)</option></select><div id="taxline"></div></div>
-  <a class="tlp-btn" href="#" id="buy" aria-disabled="true" onclick="return false">Checkout coming soon</a>
-  <p class="tlp-note">Preview only: no payments are taken on this page. Every Tintlife TruEdge is serial numbered (TE-0001, TE-0002 …). Made in Timmins, Ontario.</p>
+  <div class="tax"><label for="prov">Ship to (tax estimate)</label><select id="prov"><option value="ON">Ontario (HST 13%)</option><option value="NB">New Brunswick (HST 15%)</option><option value="NL">Newfoundland &amp; Labrador (HST 15%)</option><option value="PE">Prince Edward Island (HST 15%)</option><option value="NS">Nova Scotia (HST 14%)</option><option value="QC">Quebec (GST 5%)</option><option value="MB">Manitoba (GST 5%)</option><option value="SK">Saskatchewan (GST 5%)</option><option value="AB">Alberta (GST 5%)</option><option value="BC">British Columbia (GST 5%)</option><option value="YT">Yukon (GST 5%)</option><option value="NT">Northwest Territories (GST 5%)</option><option value="NU">Nunavut (GST 5%)</option></select><div id="taxline"></div></div>
+  <a class="tlp-btn" href="#" id="buy">Checkout securely with Square</a>
+  <p class="tlp-note">Every Tintlife TruEdge is serial numbered (TE-0001, TE-0002 …). Made in Timmins, Ontario.</p>
   <p class="tlp-note">Printed in Canada. Carbon fibre versions are stiffer and have a matte textured finish.</p>
  </div>
 </div>
@@ -130,6 +129,7 @@ C.forEach(function(c,i){var b=document.createElement('button');b.type='button';b
 function sel(i,anim,focus){cur=i;var c=C[i];if(!c[3]&&!c[4])LS=i;r.querySelector('#tlp-cc').classList.toggle('on',!!c[4]);btns.forEach(function(b,j){b.setAttribute('aria-checked',j==i);b.tabIndex=j==i?0:-1});if(focus)btns[i].focus();nm.textContent=bd.textContent=c[0];var base=+tb[T].dataset.p+(c[3]?5:0),tot=base+(c[4]?10:0)+(E()?5:0);pr.innerHTML='$'+tot.toFixed(2)+' <small>CAD · '+tb[T].dataset.n+(c[3]?' CF':'')+(c[4]?' + custom colour':'')+(E()?' + engraving':'')+'</small>';window.TOT=tot;if(window.taxu)taxu();var src=IMG+(E()?'blank_':'truedge_')+SL()+V+'.webp';if(anim){img.classList.add('fade');setTimeout(function(){img.src=src;ov();img.alt='Tintlife TruEdge squeegee and hard card sharpener in '+(c[4]?'a custom colour':c[0]);img.classList.remove('fade')},150)}else{img.src=src;ov()}}
 var ek=r.querySelector('#tlp-echk'),et=r.querySelector('#tlp-etxt'),ew=r.querySelector('#tlp-eng'),oe=r.querySelector('#tlp-ov'),ot=r.querySelector('#tlp-ovt'),mw=r.querySelector('.tlp-main');
 function E(){return ek.checked}
+window.TE=function(){var c=C[cur];return{tier:tb[T].dataset.n.toLowerCase(),colour:c[3]?'Black':(c[4]?'':c[0]),cf:!!c[3],custom:!!c[4],engraving:E()?et.value.trim():'',customColour:c[4]?r.querySelector('#tlp-cctxt').value.trim():''}};
 // usable text rect (100 x 13.5 mm, centred, 8 mm end margins) on the blank side wall, projected by Blender world_to_camera_view (render_blank.py -> corners.json): TL,TR,BR,BL
 var FC={"black_pla": "#202729", "blue": "#728ffa", "dark_blue": "#2d437e", "green": "#8bfa81", "grey": "#c0d8e6", "orange": "#fc9a7b", "pa_cf": "#1b1b1f", "petg_cf": "#1b1b1f", "pink": "#f58cd7", "red": "#fa6d71", "white": "#eff5f3", "yellow": "#f7f458", "pla_basic_black": "#191819", "pla_basic_jade_white": "#d0cfcf", "pla_basic_dark_gray": "#2c2c2c", "pla_basic_sunflower_yellow": "#d3a401", "pla_basic_orange": "#d35502", "pla_basic_maroon_red": "#7f051f", "pla_basic_magenta": "#c50073", "pla_basic_purple": "#3d1b92", "pla_basic_cobalt_blue": "#004697", "pla_basic_turquoise": "#009398", "pla_basic_bambu_green": "#009036", "pla_basic_cocoa_brown": "#54350e"};
 var Q=[[0.34096, 0.60964], [0.81818, 0.44394], [0.81425, 0.53257], [0.34316, 0.70683]];
@@ -156,8 +156,12 @@ tb.forEach(function(b,j){b.onclick=function(){tier(j)};b.onkeydown=function(e){i
 var h=location.hash.slice(1).split(',');cur=Math.max(0,C.findIndex(function(c){return c[2]==h[0]}));if(h[2]){ek.checked=true;et.value=decodeURIComponent(h[2]).slice(0,16)}tier(h[1]=='premium'?1:0);eng();
 })();
 
-var RT={ON:.13,NB:.15,NL:.15,PE:.15,NS:.14,X:.05},pv=document.getElementById('prov');
-window.taxu=function(){var t=window.TOT*RT[pv.value];document.getElementById('taxline').textContent='Est. tax on item: $'+t.toFixed(2)+' · shipping (quoted at checkout) and engraving are taxed at the same rate.'};pv.onchange=taxu;taxu();
+var RT={ON:.13,NB:.15,NL:.15,PE:.15,NS:.14,QC:.05,MB:.05,SK:.05,AB:.05,BC:.05,YT:.05,NT:.05,NU:.05},SHIP=13.99,CHECKOUT_URL='https://tintlife-truedge-checkout.tintlifetimmins.workers.dev/checkout',pv=document.getElementById('prov');
+window.taxu=function(){var r=RT[pv.value],sub=window.TOT+SHIP,t=sub*r;document.getElementById('taxline').textContent='Shipping $13.99 (flat, anywhere in Canada) · tax '+Math.round(r*100)+'% $'+t.toFixed(2)+' · total $'+(sub+t).toFixed(2)+' CAD. Ship-to province must match your shipping address.'};pv.onchange=taxu;taxu();
+document.getElementById('buy').onclick=function(e){e.preventDefault();var b=this,o=window.TE();o.province=pv.value;
+ if(o.custom&&!o.customColour){alert('Please describe your custom colour.');return}
+ b.setAttribute('aria-disabled','true');b.textContent='Opening secure checkout…';
+ fetch(CHECKOUT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(function(r){return r.json()}).then(function(j){if(j.url)location.href=j.url;else throw j}).catch(function(){alert('Sorry, checkout is unavailable right now. Please try again or contact us.');b.removeAttribute('aria-disabled');b.textContent='Checkout securely with Square'})};
 </script></div>
 <section class="sec"><h2>What's in the box</h2><div class="cards">
 <div class="card"><b>Tintlife TruEdge body</b>3D-printed in your colour, with M3 brass threaded inserts and a unique serial number (TE-0001 style).</div>
