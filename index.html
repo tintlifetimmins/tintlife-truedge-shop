@@ -62,6 +62,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 .tlp-cc{display:none;margin-top:12px}.tlp-cc.on{display:block}.tlp-cc label{font-size:13px;color:#bbb;display:block;margin-bottom:6px}.tlp-cc input{width:100%;background:#000;border:2px solid #444;border-radius:8px;color:#fff;padding:11px 12px;font:500 16px Roboto,Arial,sans-serif;outline:none}.tlp-cc input:focus{border-color:var(--acc)}
 .tlp-sw button.cf{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.09) 0 3px,transparent 3px 6px)}
 .tlp-sw button .tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;color:#000;font-size:12px;font-weight:500;padding:4px 8px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:2}
+.tlp-sw button:first-of-type .tip{left:0;transform:none}
 .tlp-sw button:hover .tip,.tlp-sw button:focus-visible .tip{opacity:1}
 .tlp-eng{margin-top:18px;background:#111;border:1px solid #333;border-radius:12px;padding:12px 14px}
 .tlp-eng label.chk{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:500;color:#fff}
@@ -123,7 +124,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 (function(){
 var IMG='renders_v1.22/',V='_v1.22'; // e.g. 'https://tintlife.ca/wp-content/uploads/truedge/'
 var C=[["Black","#000000","pla_basic_black"],["Jade White","#FFFFFF","pla_basic_jade_white"],["Dark Gray","#545454","pla_basic_dark_gray"],["Sunflower Yellow","#FEC600","pla_basic_sunflower_yellow"],["Orange","#FF6A13","pla_basic_orange"],["Maroon Red","#9D2235","pla_basic_maroon_red"],["Magenta","#EC008C","pla_basic_magenta"],["Purple","#5E43B7","pla_basic_purple"],["Cobalt Blue","#0056B8","pla_basic_cobalt_blue"],["Turquoise","#00B1B7","pla_basic_turquoise"],["Bambu Green","#00AE42","pla_basic_bambu_green"],["Cocoa Brown","#6F5034","pla_basic_cocoa_brown"],["Custom colour (+$10)","#888","custom",0,1],
-["Black Carbon Fibre (PETG-CF)","#34383B","petg_cf",1],["Black Carbon Fibre (Nylon)","#1F2125","pa_cf",1]];
+["Black Carbon Fibre (black only) (PETG-CF)","#34383B","petg_cf",1],["Black Carbon Fibre (black only) (Nylon)","#1F2125","pa_cf",1]];
 var T=0,cur=0;var r=document.getElementById('tlp'),img=r.querySelector('#tlp-img'),nm=r.querySelector('#tlp-name'),bd=r.querySelector('#tlp-badge'),pr=r.querySelector('#tlp-price'),btns=[];
 C.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','radio');b.setAttribute('aria-label',c[0]);b.style.backgroundColor=c[1];if(c[3])b.className='cf';if(c[4])b.className='cc';b.innerHTML='<span class="tip">'+c[0]+'</span>';b.onclick=function(){sel(i,1)};b.onkeydown=function(e){var k=e.key,d=(k=='ArrowRight'||k=='ArrowDown')?1:(k=='ArrowLeft'||k=='ArrowUp')?-1:0;if(d){e.preventDefault();sel((i+d+C.length)%C.length,1,1)}};r.querySelector(c[3]?'#row-cf':'#row-std').appendChild(b);btns.push(b);if(!c[4])new Image().src=IMG+'truedge_'+c[2]+V+'.webp'});var LS=0;function SL(){return C[cur][4]?C[LS][2]:C[cur][2]}
 function sel(i,anim,focus){cur=i;var c=C[i];if(!c[3]&&!c[4])LS=i;r.querySelector('#tlp-cc').classList.toggle('on',!!c[4]);btns.forEach(function(b,j){b.setAttribute('aria-checked',j==i);b.tabIndex=j==i?0:-1});if(focus)btns[i].focus();nm.textContent=bd.textContent=c[0];var base=+tb[T].dataset.p+(c[3]?5:0),tot=base+(c[4]?10:0)+(E()?5:0);pr.innerHTML='$'+tot.toFixed(2)+' <small>CAD · '+tb[T].dataset.n+(c[3]?' CF':'')+(c[4]?' + custom colour':'')+(E()?' + engraving':'')+'</small>';window.TOT=tot;if(window.taxu)taxu();var src=IMG+(E()?'blank_':'truedge_')+SL()+V+'.webp';if(anim){img.classList.add('fade');setTimeout(function(){img.src=src;ov();img.alt='Tintlife TruEdge squeegee and hard card sharpener in '+(c[4]?'a custom colour':c[0]);img.classList.remove('fade')},150)}else{img.src=src;ov()}}
@@ -167,8 +168,8 @@ window.taxu=function(){var t=window.TOT*RT[pv.value];document.getElementById('ta
 <div class="card"><b>Thin channel (4 mm)</b>Built for thin rubber and hard cards.</div></div>
 <p class="secp">Each pass takes off only about 0.75 mm, less than other sharpeners on the market, so your rubber lasts longer. The 15° blade gives a clean, sharp edge every time.</p></section>
 <section class="sec"><h2>Pricing</h2><div class="pcards">
-<div class="pcard"><h3>Eco</h3><div class="big">$29.99 <small>CAD</small></div><p class="spec">15% grid infill · 3 walls</p><div class="add"><span>Carbon fibre (black)</span><b>+$5</b></div></div>
-<div class="pcard prem"><h3>Premium</h3><div class="big">$39.99 <small>CAD</small></div><p class="spec">40% gyroid infill · 5 walls</p><div class="add"><span>Carbon fibre (black)</span><b>+$5</b></div></div></div>
+<div class="pcard"><h3>Eco</h3><div class="big">$29.99 <small>CAD</small></div><p class="spec">15% grid infill · 3 walls</p><div class="add"><span>Carbon fibre (black only)</span><b>+$5</b></div></div>
+<div class="pcard prem"><h3>Premium</h3><div class="big">$39.99 <small>CAD</small></div><p class="spec">40% gyroid infill · 5 walls</p><div class="add"><span>Carbon fibre (black only)</span><b>+$5</b></div></div></div>
 <ul class="addons"><li><span>Custom engraving (one line)</span><b>+$5</b></li><li><span>Custom colour (PLA only)</span><b>+$10</b></li></ul>
 <p class="pfine">All prices CAD, plus tax and shipping.</p>
 <details class="ptax2"><summary>Tax by province</summary><ul><li>ON 13%</li><li>NB, NL, PEI 15%</li><li>NS 14%</li><li>All others 5% GST</li></ul>Shipping and engraving are taxed the same.</details>
