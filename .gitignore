@@ -1,0 +1,10 @@
+# raw build artifacts / scratch
+renders_v1.22/build/
+renders_v1.22/*.png
+*.stl
+*.STL
+c2.html
+ca.html
+p.json
+codes.json
+ca.json
