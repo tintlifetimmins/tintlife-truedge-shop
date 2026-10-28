@@ -91,7 +91,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 <feFlood id="tlpHiC" flood-color="#fff" flood-opacity=".22"/><feComposite in2="ib2" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="lip"/>
 <feOffset in="SourceAlpha" dx="0.6" dy="2" result="so"/><feComposite in="so" in2="SourceAlpha" operator="out" result="orim"/><feGaussianBlur in="orim" stdDeviation=".5" result="orb"/>
 <feFlood id="tlpRimC" flood-color="#fff" flood-opacity="0"/><feComposite in2="orb" operator="in" result="rim"/>
-<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="wall"/><feMergeNode in="lip"/><feMergeNode in="rim"/></feMerge></filter></defs><text id="tlp-ovt" x="500" y="96.7" text-anchor="middle" font-size="80"></text></svg></div><span class="tlp-badge" id="tlp-badge">Black</span></div>
+<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="wall"/><feMergeNode in="lip"/><feMergeNode in="rim"/></feMerge></filter></defs><text id="tlp-ovt" x="270" y="96.7" text-anchor="middle" font-size="80"></text></svg></div><span class="tlp-badge" id="tlp-badge">Black</span></div>
  <div class="tlp-info">
   <p class="tlp-kicker">Pocket squeegee &amp; hard card sharpener</p>
   <h1 class="tlp-h">Tintlife TruEdge Mini</h1>
@@ -117,9 +117,11 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
     <div class="hint" id="tlp-ehint"><span>Engraving goes on the blank side.</span><span id="tlp-ecnt">0/16</span></div>
    </div>
   </div>
-  <!-- MINI CHECKOUT PLACEHOLDER: no Square checkout for the Tintlife TruEdge Mini yet (Worker prices full-size only). -->
-  <a class="tlp-btn" href="#" id="buy" aria-disabled="true" style="opacity:.55;cursor:not-allowed;box-shadow:none">Checkout coming soon</a>
-  <p class="tlp-note" style="color:#ffcc33">Online checkout for the Tintlife TruEdge Mini is not open yet. <a href="contact.html">Contact us</a> to order.</p>
+  <div class="tax"><label for="prov">Ship to (tax estimate)</label><select id="prov"><option value="ON">Ontario (HST 13%)</option><option value="NB">New Brunswick (HST 15%)</option><option value="NL">Newfoundland &amp; Labrador (HST 15%)</option><option value="PE">Prince Edward Island (HST 15%)</option><option value="NS">Nova Scotia (HST 14%)</option><option value="QC">Quebec (GST 5%)</option><option value="MB">Manitoba (GST 5%)</option><option value="SK">Saskatchewan (GST 5%)</option><option value="AB">Alberta (GST 5%)</option><option value="BC">British Columbia (GST 5%)</option><option value="YT">Yukon (GST 5%)</option><option value="NT">Northwest Territories (GST 5%)</option><option value="NU">Nunavut (GST 5%)</option></select><div id="taxline"></div></div>
+  <div class="tax"><label for="tlp-code">Have a code?</label><div class="codebox"><input type="text" id="tlp-code" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="tlp-codemsg"><button type="button" id="tlp-apply">Apply</button></div><div id="tlp-codemsg" role="status" aria-live="polite"></div></div>
+  <a class="tlp-btn" href="#" id="buy">Checkout securely with Square</a>
+  <p class="tlp-note">Made in Timmins, Ontario.</p>
+  <p class="tlp-note">Printed in Canada. Carbon fibre versions are stiffer and have a matte textured finish.</p>
  </div>
 </div>
 <script>
@@ -135,11 +137,11 @@ function E(){return ek.checked}
 window.TE=function(){var c=C[cur];return{tier:tb[T].dataset.n.toLowerCase(),colour:c[3]?'Black':(c[4]?'':c[0]),cf:!!c[3],custom:!!c[4],engraving:E()?et.value.trim():'',customColour:c[4]?r.querySelector('#tlp-cctxt').value.trim():''}};
 // usable text rect (100 x 13.5 mm, centred, 8 mm end margins) on the blank side wall, projected by Blender world_to_camera_view (render_blank.py -> corners.json): TL,TR,BR,BL
 var FC={"black_pla": "#202729", "blue": "#728ffa", "dark_blue": "#2d437e", "green": "#8bfa81", "grey": "#c0d8e6", "orange": "#fc9a7b", "pa_cf": "#1b1b1f", "petg_cf": "#1b1b1f", "pink": "#f58cd7", "red": "#fa6d71", "white": "#eff5f3", "yellow": "#f7f458", "pla_basic_black": "#191819", "pla_basic_jade_white": "#d0cfcf", "pla_basic_dark_gray": "#2c2c2c", "pla_basic_sunflower_yellow": "#d3a401", "pla_basic_orange": "#d35502", "pla_basic_maroon_red": "#7f051f", "pla_basic_magenta": "#c50073", "pla_basic_purple": "#3d1b92", "pla_basic_cobalt_blue": "#004697", "pla_basic_turquoise": "#009398", "pla_basic_bambu_green": "#009036", "pla_basic_cocoa_brown": "#54350e"};
-var Q=[[0.34096, 0.60964], [0.81818, 0.44394], [0.81425, 0.53257], [0.34316, 0.70683]];
+var Q=[[0.45113, 0.58502], [0.76847, 0.4738], [0.76429, 0.58497], [0.45195, 0.70323]];
 function m3(a,b){var c=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++){c[i*3+j]=0;for(var k=0;k<3;k++)c[i*3+j]+=a[i*3+k]*b[k*3+j]}return c}
 function inv(m){var a=m[0],b=m[1],c=m[2],d=m[3],e=m[4],f=m[5],g=m[6],h=m[7],i=m[8];return [e*i-f*h,c*h-b*i,b*f-c*e,f*g-d*i,a*i-c*g,c*d-a*f,d*h-e*g,b*g-a*h,a*e-b*d]}
 function basis(p){var m=[p[0][0],p[1][0],p[2][0],p[0][1],p[1][1],p[2][1],1,1,1],v=inv(m),x=v[0]*p[3][0]+v[1]*p[3][1]+v[2],y=v[3]*p[3][0]+v[4]*p[3][1]+v[5],z=v[6]*p[3][0]+v[7]*p[3][1]+v[8];return m3(m,[x,0,0,0,y,0,0,0,z])}
-function ov(){var t=et.value.trim();if(1){oe.style.display='none';return}
+function ov(){var t=et.value.trim();if(!E()||!t){oe.style.display='none';return}
  oe.style.display='block';ot.textContent=t;
  // single-colour print: floor = body colour ~12% darker; recess read via inner wall shadow (top/left), lit lower wall (bottom/right) and, on dark bodies, a rim light on the lip
  var dark={pla_basic_black:1,pla_basic_dark_gray:1,pla_basic_purple:1,pla_basic_cocoa_brown:1,pla_basic_maroon_red:1,petg_cf:1,pa_cf:1}[SL()],sv=function(id,o){r.querySelector('#'+id).setAttribute('flood-opacity',o)};
@@ -147,10 +149,10 @@ function ov(){var t=et.value.trim();if(1){oe.style.display='none';return}
  sv('tlpShC',dark?.85:.5);sv('tlpHiC',dark?.55:.22);sv('tlpRimC',dark?.4:0);
  var W=mw.clientWidth,H=mw.clientHeight,s=Math.max(W/4,H/3),iw=s*4,ih=s*3,ox=(W-iw)/2,oy=(H-ih)/2;
  var P=Q.map(function(q){return [ox+q[0]*iw,oy+q[1]*ih]});
- var h=m3(basis(P),inv(basis([[0,0],[1000,0],[1000,135],[0,135]])));for(var i=0;i<9;i++)h[i]/=h[8];
+ var h=m3(basis(P),inv(basis([[0,0],[540,0],[540,135],[0,135]])));for(var i=0;i<9;i++)h[i]/=h[8];
  oe.style.transform='matrix3d('+[h[0],h[3],0,h[6],h[1],h[4],0,h[7],0,0,1,0,h[2],h[5],0,1].join(',')+')';
  // 8 mm em (80 px at 10 px/mm), caps centred on the face: baseline = 67.5 + 0.729em/2; shrink to fit 100 mm
- ot.setAttribute('font-size',80);var w=ot.getComputedTextLength(),fs=w>1000?80*1000/w:80;ot.setAttribute('font-size',fs);ot.setAttribute('y',(67.5+0.3645*fs).toFixed(2))}
+ ot.setAttribute('font-size',80);var w=ot.getComputedTextLength(),fs=w>540?80*540/w:80;ot.setAttribute('font-size',fs);ot.setAttribute('y',(67.5+0.3645*fs).toFixed(2))}
 function eng(){ew.classList.toggle('on',E());r.querySelector('#tlp-ecnt').textContent=et.value.length+'/16';sel(cur,0)}
 ek.onchange=function(){eng();if(E())et.focus()};et.oninput=eng;window.addEventListener('resize',ov);
 var tb=r.querySelectorAll('#row-tier button'),tn=r.querySelector('#tlp-tname');
@@ -159,8 +161,23 @@ tb.forEach(function(b,j){b.onclick=function(){tier(j)};b.onkeydown=function(e){i
 var h=location.hash.slice(1).split(',');cur=Math.max(0,C.findIndex(function(c){return c[2]==h[0]}));if(h[2]){ek.checked=true;et.value=decodeURIComponent(h[2]).slice(0,16)}tier(h[1]=='premium'?1:0);eng();
 })();
 
-var MINI_CHECKOUT_URL=null; // PLACEHOLDER
-document.getElementById('buy').onclick=function(e){e.preventDefault();if(!MINI_CHECKOUT_URL)alert('Online checkout for the Tintlife TruEdge Mini is coming soon. Please contact us to order.')};
+var RT={ON:.13,NB:.15,NL:.15,PE:.15,NS:.14,QC:.05,MB:.05,SK:.05,AB:.05,BC:.05,YT:.05,NT:.05,NU:.05},SHIP=13.99,CHECKOUT_URL='https://tintlife-truedge-checkout.tintlifetimmins.workers.dev/checkout',pv=document.getElementById('prov');
+var API='https://tintlife-truedge-checkout.tintlifetimmins.workers.dev',CODE=null,ci=document.getElementById('tlp-code'),cm=document.getElementById('tlp-codemsg'),ab=document.getElementById('tlp-apply');
+// Same maths as the Worker/Square: cents, discount on the base Tintlife TruEdge Mini line only, tax rounded per line.
+window.taxu=function(){var r=RT[pv.value],o=window.TE?window.TE():null;if(!o)return;var tbn=document.querySelector('#row-tier button[aria-checked="true"]')||document.querySelector('button[data-n]');
+ var base=Math.round(+tbn.dataset.p*100)+(o.cf?500:0),d=CODE?Math.round(base*CODE.pct/100):0,lines=[base-d];if(o.custom)lines.push(1000);if(o.engraving)lines.push(500);lines.push(1399);
+ var sub=0,tax=0;lines.forEach(function(c){sub+=c;tax+=Math.round(c*r)});var f=function(c){return '$'+(c/100).toFixed(2)};
+ document.getElementById('taxline').textContent=(d?'Code '+CODE.code+' (-'+CODE.pct+'% on the Tintlife TruEdge Mini): -'+f(d)+' · ':'')+'Shipping $13.99 (flat, anywhere in Canada) · tax '+Math.round(r*100)+'% '+f(tax)+' · total '+f(sub+tax)+' CAD. Ship-to province must match your shipping address.'};
+function applyCode(then){var c=ci.value.trim().toUpperCase();cm.className='';cm.textContent='';if(!c){CODE=null;taxu();if(then)then();return}ab.disabled=true;
+ fetch(API+'/validate-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:c})}).then(function(r){return r.json()}).then(function(j){ab.disabled=false;if(j.valid){CODE={code:c,pct:j.percent};cm.className='ok';cm.textContent='Code applied: '+j.percent+'% off the Tintlife TruEdge Mini.';taxu();if(then)then()}else{CODE=null;cm.textContent=j.error||'Sorry, that code isn\'t valid.';taxu()}}).catch(function(){ab.disabled=false;cm.textContent='Could not check the code. Please try again.'})}
+ab.onclick=function(){applyCode()};ci.onkeydown=function(e){if(e.key=='Enter'){e.preventDefault();applyCode()}};ci.oninput=function(){if(CODE&&ci.value.trim().toUpperCase()!=CODE.code){CODE=null;cm.textContent='';taxu()}};
+document.getElementById('tlp-etxt').addEventListener('input',function(){taxu()});
+pv.onchange=taxu;taxu();
+document.getElementById('buy').onclick=function(e){e.preventDefault();var b=this,o=window.TE();o.product='mini';o.province=pv.value;var typed=ci.value.trim().toUpperCase();if(typed&&(!CODE||CODE.code!=typed)){applyCode();return}o.code=CODE?CODE.code:'';
+ if(o.custom&&!o.customColour){alert('Please describe your custom colour.');return}
+ b.setAttribute('aria-disabled','true');b.textContent='Opening secure checkout…';
+ var reset=function(){b.removeAttribute('aria-disabled');b.textContent='Checkout securely with Square'};
+ fetch(CHECKOUT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(function(r){return r.json()}).then(function(j){if(j.url){location.href=j.url;return}if(j.codeError){cm.textContent=j.error;reset();document.getElementById('tlp-code').focus();return}throw j}).catch(function(){alert('Sorry, checkout is unavailable right now. Please try again or contact us.');reset()})};
 </script></div>
 <section class="sec"><h2>Tintlife TruEdge Mini features</h2><div class="cards">
 <div class="card"><b>Pocket size</b>About 70 × 70.5 × 17.5 mm.</div>
