@@ -49,7 +49,12 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 .tlp-main{background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;aspect-ratio:4/3;position:relative}
 .tlp-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s}
 .tlp-main img.fade{opacity:0}
-@media(min-width:821px){.tlp-main{align-self:start;position:sticky;top:20px}}
+@media(min-width:821px){.tlp-media{align-self:start;position:sticky;top:20px}}
+.tlp-3d{margin-top:12px;background:radial-gradient(circle at 50% 40%,#2a2a2a,#151515);border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;aspect-ratio:4/3;position:relative}
+.tlp-3d model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent;--progress-bar-color:#cc44cc}
+.tlp-3d-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px}
+.tlp-3d-hint{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.7);border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:12px;color:#ddd;pointer-events:none;z-index:1}
+.tlp-3d-tag{position:absolute;left:14px;top:14px;background:#cc44cc;color:#fff;padding:3px 10px;border-radius:20px;font:700 12px Roboto,Arial,sans-serif;letter-spacing:.06em;z-index:1;pointer-events:none}
 .tlp-badge{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.7);border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:500}
 .tlp-info{background:#1a1a1a;border-radius:14px;padding:28px;border:1px solid #2a2a2a}
 .tlp-kicker{color:var(--acc);font-weight:700;letter-spacing:.14em;font-size:12px;text-transform:uppercase;margin:0 0 6px}
@@ -89,7 +94,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 @media(max-width:820px){.tlp-main{min-height:0}.tlp-tiers button{padding:12px}.tlp{padding:20px 14px}.tlp-grid{grid-template-columns:1fr;gap:18px}.tlp h2{font-size:27px}.tlp-info{padding:20px}.tlp-sw{gap:14px}.tlp-sw button{width:42px;height:42px}}
 </style>
 <div class="tlp-grid">
- <div class="tlp-main"><img id="tlp-img" src="renders_v1.22/truedge_pla_basic_black_v1.22.webp" alt="Tintlife TruEdge squeegee and hard card sharpener in Black" width="1600" height="1200"><div class="tlp-ov" id="tlp-ov"><svg width="1000" height="135" viewBox="0 0 1000 135" aria-hidden="true"><defs><filter id="tlpEng" x="-5%" y="-40%" width="110%" height="180%" color-interpolation-filters="sRGB">
+ <div class="tlp-media"><div class="tlp-main"><img id="tlp-img" src="renders_v1.22/truedge_pla_basic_black_v1.22.webp" alt="Tintlife TruEdge squeegee and hard card sharpener in Black" width="1600" height="1200"><div class="tlp-ov" id="tlp-ov"><svg width="1000" height="135" viewBox="0 0 1000 135" aria-hidden="true"><defs><filter id="tlpEng" x="-5%" y="-40%" width="110%" height="180%" color-interpolation-filters="sRGB">
 <feComponentTransfer in="SourceAlpha" result="inv"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer>
 <feOffset in="inv" dx="1.5" dy="4" result="io"/><feGaussianBlur in="io" stdDeviation="1.2" result="ib"/>
 <feFlood id="tlpShC" flood-color="#000" flood-opacity=".5"/><feComposite in2="ib" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="wall"/>
@@ -97,7 +102,7 @@ footer{border-top:1px solid #2a2a2a;padding:20px 16px;font-size:13px;color:#888;
 <feFlood id="tlpHiC" flood-color="#fff" flood-opacity=".22"/><feComposite in2="ib2" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="lip"/>
 <feOffset in="SourceAlpha" dx="0.6" dy="2" result="so"/><feComposite in="so" in2="SourceAlpha" operator="out" result="orim"/><feGaussianBlur in="orim" stdDeviation=".5" result="orb"/>
 <feFlood id="tlpRimC" flood-color="#fff" flood-opacity="0"/><feComposite in2="orb" operator="in" result="rim"/>
-<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="wall"/><feMergeNode in="lip"/><feMergeNode in="rim"/></feMerge></filter></defs><text id="tlp-ovt" x="500" y="96.7" text-anchor="middle" font-size="80"></text></svg></div><span class="tlp-badge" id="tlp-badge">Black</span></div>
+<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="wall"/><feMergeNode in="lip"/><feMergeNode in="rim"/></feMerge></filter></defs><text id="tlp-ovt" x="500" y="96.7" text-anchor="middle" font-size="80"></text></svg></div><span class="tlp-badge" id="tlp-badge">Black</span></div><div class="tlp-3d" id="tlp-3d" data-glb="models/truedge-full-v1.23.glb" data-alt="Interactive 3D model of the Tintlife TruEdge in orange PLA"><span class="tlp-3d-tag">3D</span><div class="tlp-3d-ph">Loading 3D view…</div><span class="tlp-3d-hint">Drag to spin · pinch to zoom · 2 fingers to pan</span></div><script>(function(){var b=document.getElementById('tlp-3d');if(!b)return;var done=0;function go(){if(done)return;done=1;var s=document.createElement('script');s.type='module';s.src='models/model-viewer.min.js';document.head.appendChild(s);var m=document.createElement('model-viewer');m.setAttribute('src',b.dataset.glb);m.setAttribute('alt',b.dataset.alt);['camera-controls','auto-rotate'].forEach(function(a){m.setAttribute(a,'')});m.setAttribute('touch-action','pan-y');m.setAttribute('interaction-prompt','none');m.setAttribute('auto-rotate-delay','0');m.setAttribute('rotation-per-second','25deg');m.setAttribute('camera-orbit','30deg 55deg auto');m.setAttribute('shadow-intensity','0.8');m.setAttribute('exposure','1');m.setAttribute('tone-mapping','neutral');m.setAttribute('shadow-softness','0.6');m.setAttribute('loading','eager');function stop(){m.removeAttribute('auto-rotate')}m.addEventListener('pointerdown',stop);m.addEventListener('wheel',stop,{passive:true});m.addEventListener('touchstart',stop,{passive:true});m.addEventListener('load',function(){var p=b.querySelector('.tlp-3d-ph');if(p)p.remove()});b.appendChild(m)}if('IntersectionObserver'in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();go()}},{rootMargin:'200px'});io.observe(b)}else go()})();</script></div>
  <div class="tlp-info">
   <p class="tlp-kicker">Window tint tools · made in Timmins, Ontario</p>
   <h1 class="tlp-h">Tintlife TruEdge Squeegee &amp; Hard Card Sharpener</h1>
