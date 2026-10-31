@@ -22,6 +22,7 @@ s=re.sub(r'<button type="button" role="radio" data-p="39.99" data-n="Premium">.*
 R('Engraving text (one line, on the plain side wall)','Engraving text (one line, on the blank side)')
 R('Engraving is recessed into the part, same colour as the body (single-colour print). Preview is approximate.','Engraving goes on the blank side.')
 R('Every Tintlife TruEdge is serial numbered (TE-0001, TE-0002 …). Made in Timmins, Ontario.','Made in Timmins, Ontario.')
+R('data-glb="models/truedge-full-v1.23.glb" data-alt="Interactive 3D model of the Tintlife TruEdge in','data-glb="models/truedge-mini-v1.7.glb" data-alt="Interactive 3D model of the Tintlife TruEdge Mini in')
 R("var IMG='renders_v1.22/',V='_v1.22';","var IMG='renders_mini_v1.5/',V='_v1.5';")
 R(',["Carbon Fibre (black only) (Nylon)","#1F2125","pa_cf",1]]',']')
 R('["Carbon Fibre (black only) (PETG-CF)"','["Carbon Fibre (black only)"')
