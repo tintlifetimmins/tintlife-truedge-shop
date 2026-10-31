@@ -1,5 +1,6 @@
 # Tintlife TruEdge
 User-agent: *
 Allow: /
+Disallow: /preview-3d/
 
 Sitemap: https://shop.tintlife.ca/sitemap.xml
