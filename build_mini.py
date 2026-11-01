@@ -26,7 +26,6 @@ R('data-glb="models/truedge-full-v1.23.glb" data-alt="Interactive 3D model of th
 R("var IMG='renders_v1.22/',V='_v1.22';","var IMG='renders_mini_v1.5/',V='_v1.5';")
 R(',["Carbon Fibre (black only) (Nylon)","#1F2125","pa_cf",1]]',']')
 R('["Carbon Fibre (black only) (PETG-CF)"','["Carbon Fibre (black only)"')
-R('renders_v1.22/truedge_pla_basic_black_v1.22.webp" alt="Tintlife TruEdge squeegee','renders_mini_v1.5/truedge_pla_basic_black_v1.5.webp" alt="Tintlife TruEdge Mini squeegee')
 import json
 c=json.load(open('/workspace/truedge-mini/work/r15/bl/c_black.json'))
 s=re.sub(r'var Q=\[\[.*?\]\];','var Q='+json.dumps([c['tl'],c['tr'],c['br'],c['bl']])+';',s,count=1)  # Mini blank-side text rect (54 x 13.5 mm) from blank.py
